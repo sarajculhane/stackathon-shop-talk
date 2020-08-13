@@ -1,6 +1,8 @@
 $theme-colors: (
   'info': tomato,
-  'primary': teal
+  'primary': #519872,
+  'secondary': #382933,
+  'light': #a4b494
 );
 
 @import '../node_modules/bootstrap/scss/bootstrap';
