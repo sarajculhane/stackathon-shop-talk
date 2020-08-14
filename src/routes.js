@@ -1,8 +1,7 @@
 import React from 'react'
 import {Route,Switch ,Link} from 'react-router-dom'
-import Login from './components/Login'
-import SignUp from './components/SignUp'
 import Home from './components/Home'
+import StockTest from './components/StockTest'
 
 
 const Routes = () => {
@@ -12,6 +11,7 @@ const Routes = () => {
             <Route exact path="/" component={Home} />
             {/* <Route path="/login" component={Login} />
             <Route path="/signup" component={SignUp} /> */}
+            <Route path='/stocks' component={StockTest} />
             </div>
        </Switch>
     )
