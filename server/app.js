@@ -33,16 +33,14 @@ const createApp = () => {
   app.use(compression())
 
   // session middleware with passport
-//   app.use(
-//     session({
-//       secret: process.env.SESSION_SECRET || 'my best friend is Cody',
-//       store: sessionStore,
-//       resave: false,
-//       saveUninitialized: false
-//     })
-//   )
-//   app.use(passport.initialize())
-//   app.use(passport.session())
+  app.use(session({
+    secret: 'a wildly insecure secret',
+    resave: false,
+    saveUninitialized: false
+  }));
+
+  app.use(passport.initialize());
+  app.use(passport.session());
 
   // auth and api routes
   app.use('/auth', require('./auth'))
@@ -50,6 +48,8 @@ const createApp = () => {
 
   // static file-serving middleware
   app.use(express.static(path.join(__dirname, '..', 'public')))
+
+
 
   // any remaining requests with an extension (.js, .css, etc.) send 404
   app.use((req, res, next) => {
