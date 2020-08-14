@@ -6,13 +6,13 @@ const compression = require('compression')
 const session = require('express-session')
 const passport = require('passport')
 const db = require('./db')
-
-
-const PORT = process.env.PORT || 8080
 const app = express()
+app.use(cors())
+const PORT = process.env.PORT || 8080
+
 module.exports = app
 
-app.use(cors())
+
 
 
 passport.serializeUser((user, done) => done(null, user.id))

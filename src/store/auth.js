@@ -6,6 +6,8 @@ import history from '../history'
  */
 
 
+
+const REMOVE_USER = 'REMOVE_USER'
 const GET_ME = 'GET_ME'
 
 /**
@@ -16,22 +18,16 @@ const defaultUser = {}
 /**
  * ACTION CREATORS
  */
-const getMe = user => ({type: GET_ME, user})
 
-/**
- * THUNK CREATORS
- */
+const removeUser = () => ({type: REMOVE_USER})
+const getMe = user => ({type: GET_ME, user})
 
 export const me = () => async dispatch => {
   try {
-    const res = await axios.get('http://localhost:8080/auth/me', {
-        headers: {
-            "Access-Control-Allow-Origin": '*'
-    }
-})
+    const res = await axios.get('http://localhost:8080/auth/me')
     dispatch(getMe(res.data || defaultUser))
   } catch (err) {
-    console.error(err)
+    console.error(err, 'this is an error from me thunk')
   }
 }
 
@@ -56,37 +52,34 @@ export const auth = (
   password,
   method
 ) => async dispatch => {
-  let res
   try {
-    if (method === 'signup') {
-      res = await axios.post(`/auth/${method}`, {
+    if (method === 'login') {
+      const {data} = await axios.post(`http://localhost:8080/auth/${method}`, {
         username,
         password
       })
-    } else {
-      res = await axios.post(`/auth/${method}`, {username, password})
+      dispatch(getMe(data))
+      history.push('/home')
+    } else if (method === 'signup') {
+      const {data} = await axios.post(`http://localhost:8080/auth/${method}`, {username, password})
+      dispatch(getMe(data))
+      history.push('/home')
     }
-  } catch (authError) {
-    return dispatch(getMe({error: authError}))
-  }
-
-  try {
-    dispatch(getMe(res.data))
-    history.push('/home')
-  } catch (dispatchOrHistoryErr) {
-    console.error(dispatchOrHistoryErr)
-  }
+  } catch (err) {
+      console.log(err, 'this is the thunk error')
+}
 }
 
-// export const logout = () => async dispatch => {
-//   try {
-//     await axios.post('/auth/logout')
-//     dispatch(removeUser())
-//     history.push('/login')
-//   } catch (err) {
-//     console.error(err)
-//   }
-// }
+export const logout = () => async dispatch => {
+  try {
+    await axios.post('http://localhost:8080/auth/logout')
+    dispatch(removeUser())
+    history.push('/')
+    console.log('I am logged out')
+  } catch (err) {
+    console.error(err)
+  }
+}
 
 /**
  * REDUCER
@@ -95,8 +88,8 @@ export default function(state = defaultUser, action) {
   switch (action.type) {
     case GET_ME:
       return action.user
-    // case REMOVE_USER:
-    //   return defaultUser
+    case REMOVE_USER:
+      return defaultUser
     default:
       return state
   }

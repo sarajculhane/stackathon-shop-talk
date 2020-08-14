@@ -1,15 +1,16 @@
 import React from 'react'
-
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store/auth'
-import Button from 'react-bootstrap'
+import Button from 'react-bootstrap/Button'
 
-const Logout = ({handleClick, isLoggedIn}) => {
+const Logout = (props) => {
+    const {handleClick} = props
     return (
         <div>
             <Button onClick={handleClick}>Logout</Button>
-        </div>
+            </div>
+        
     )
 }
 

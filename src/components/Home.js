@@ -3,11 +3,12 @@ import {Container, Row, Col} from 'react-bootstrap'
 import Login from './Login'
 import SignUp from './SignUp'
 import StockTest from './StockTest'
-
+import {Jumbo} from './NavBar'
 const Home = () => {
     return (
         <div className='home-split'>
     <Container fluid>
+    <Jumbo />
     <Row>
     <Col><StockTest /></Col>
     </Row>

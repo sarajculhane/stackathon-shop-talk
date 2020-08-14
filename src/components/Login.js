@@ -7,6 +7,11 @@ import {connect} from 'react-redux'
 
 export class LoginForm extends React.Component{
 
+    constructor(props) {
+      super(props)
+
+    }
+
     render() {
       return (
         <Form onSubmit={this.props.handleSubmit}>
@@ -32,7 +37,8 @@ export class LoginForm extends React.Component{
 
 }
 
-const Login = () => {
+const Login = (props) => {
+    const {handleSubmit} = props
     return <div>
     <Card style={{width: '18rem', height: '20rem'}}>
     <Card.Body>
@@ -40,7 +46,7 @@ const Login = () => {
     <Card.Text>
         Please sign in below
     </Card.Text>
-    <LoginForm />
+    <LoginForm handleSubmit={handleSubmit}/>
     </Card.Body>
 </Card>
 </div>
@@ -50,10 +56,16 @@ const Login = () => {
 const mapDispatch = dispatch => {
   return {
     handleSubmit(evt) {
-      evt.preventDefault()
-      const username = evt.target.username.value
-      const password = evt.target.password.value
-      dispatch(auth(username, password, 'login'))
+      try{ 
+        evt.preventDefault()
+        const username = evt.target.username.value
+        const password = evt.target.password.value
+        console.log(username, password, 'event')
+        dispatch(auth(username, password, 'login'))
+      } catch(err) {
+        console.log(err)
+      }
+
     }
   }
 }
