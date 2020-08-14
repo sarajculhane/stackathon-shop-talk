@@ -2,13 +2,12 @@ import {createStore, combineReducers, applyMiddleware} from 'redux'
 import {createLogger} from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
-// import users from './users'
+import currentUser from './auth'
 import singleUser from './single-user'
 
 
 const reducer = combineReducers({
-//   users,
-  singleUser
+    currentUser
 })
 
 const middleware = composeWithDevTools(

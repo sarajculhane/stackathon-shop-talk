@@ -1,14 +1,19 @@
 const path = require('path')
 const express = require('express')
 const morgan = require('morgan')
+const cors = require('cors')
 const compression = require('compression')
 const session = require('express-session')
 const passport = require('passport')
 const db = require('./db')
 
+
 const PORT = process.env.PORT || 8080
 const app = express()
 module.exports = app
+
+app.use(cors())
+
 
 passport.serializeUser((user, done) => done(null, user.id))
 

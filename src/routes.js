@@ -13,7 +13,6 @@ class Routes extends React.Component {
         const {isLoggedIn} = this.props
         if (isLoggedIn) {
           console.log('inside if')
-          await this.props.loadCart()
         } else {
           console.log('no user logged in')
         }
@@ -42,7 +41,7 @@ class Routes extends React.Component {
 const mapState = state => {
     return {
 
-      isLoggedIn: !!state.user,
+      isLoggedIn: !!state.currentUser,
     }
   }
   
