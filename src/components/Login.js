@@ -2,19 +2,24 @@ import React from 'react';
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
+import {auth} from '../store/auth'
+import {connect} from 'react-redux'
 
-export const LoginForm = () => {
-    return (
-        <Form>
+export class LoginForm extends React.Component{
+
+    render() {
+      return (
+        <Form onSubmit={this.props.handleSubmit}>
+
   <Form.Group controlId="formBasicEmail">
     <Form.Label>Username</Form.Label>
-    <Form.Control type="text" placeholder="Enter username" />
+    <Form.Control type="text" name='username' placeholder="Enter username" />
 
   </Form.Group>
 
   <Form.Group controlId="formBasicPassword">
     <Form.Label>Password</Form.Label>
-    <Form.Control type="password" placeholder="Password" />
+    <Form.Control type="password" name='password' placeholder="Password" />
   </Form.Group>
   <Form.Group controlId="formBasicCheckbox">
   </Form.Group>
@@ -23,6 +28,8 @@ export const LoginForm = () => {
   </Button>
 </Form>
     )
+}
+
 }
 
 const Login = () => {
@@ -40,6 +47,17 @@ const Login = () => {
 
 }
 
+const mapDispatch = dispatch => {
+  return {
+    handleSubmit(evt) {
+      evt.preventDefault()
+      const username = evt.target.username.value
+      const password = evt.target.password.value
+      dispatch(auth(username, password, 'login'))
+    }
+  }
+}
 
 
-export default Login
+
+export default connect(null, mapDispatch)(Login)
