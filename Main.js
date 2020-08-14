@@ -1,7 +1,4 @@
 const { app, BrowserWindow } = require('electron')
-const express = require('express')
-require('./app.js')
-
 
 function createWindow () {
   // Create the browser window.

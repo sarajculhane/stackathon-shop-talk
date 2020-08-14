@@ -7,7 +7,7 @@ const StockPage = (props) => {
     const {symbol, companyName, open, close} = props.stock
     return (
         <div>
-        <Card >
+        <Card bg='light'>
           <Card.Body>
           <Card.Title>Stock of the Day</Card.Title>
           <Card.Text>

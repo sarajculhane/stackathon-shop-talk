@@ -11,11 +11,12 @@ const Home = () => {
     <Row>
     <Col><StockTest /></Col>
     </Row>
-    <Row>
+    <Row className="justify-content-md-center">
+      <div id='sessions' >
       <Col><Login /></Col>
       <Col><SignUp /></Col>
+      </div>
     </Row>
-    
 
     
   </Container>

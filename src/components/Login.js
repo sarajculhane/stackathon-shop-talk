@@ -7,8 +7,8 @@ export const LoginForm = () => {
     return (
         <Form>
   <Form.Group controlId="formBasicEmail">
-    <Form.Label>Email address</Form.Label>
-    <Form.Control type="email" placeholder="Enter email" />
+    <Form.Label>Username</Form.Label>
+    <Form.Control type="text" placeholder="Enter username" />
 
   </Form.Group>
 
@@ -27,7 +27,7 @@ export const LoginForm = () => {
 
 const Login = () => {
     return <div>
-    <Card >
+    <Card style={{width: '18rem', height: '20rem'}}>
     <Card.Body>
     <Card.Title>Returning User?</Card.Title>
     <Card.Text>

@@ -1,9 +1,6 @@
 var express = require('express');
 var request = require('request');
-
-var app = express();
-
-var port = process.env.PORT || 3000
+const app = require('./app')
 
 var router = express.Router();
 

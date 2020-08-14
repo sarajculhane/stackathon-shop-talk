@@ -1,3 +1,12 @@
-body {
-    background-color: #519872;
-}
+.home-split {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #sessions {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+      padding-top: 1rem;
+  }
