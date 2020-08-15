@@ -32,9 +32,16 @@ const StockSelector = () => {
     }
 
     const renderStockInfo = () => {
-        if(selectedStocks.length > 0) {
+        const stockArr = []
+        selectedStocks.forEach((stock, idx) => {
+            if(stock === fakeStocks[idx].symbol) stockArr.push(fakeStocks[idx])
+        })
+        if(stockArr.length) {
             return (
-        selectedStocks.map((stock => <div>{stock}</div>)))
+        stockArr.map((stock) => <div>{stock.symbol} {stock.company}</div>
+            ))
+        } else  {
+            return <div>No Stocks</div>
         }
 
 
