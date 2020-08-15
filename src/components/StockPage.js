@@ -1,6 +1,7 @@
 import React from 'react'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
+import StockSelector from './StockSelector'
 
 const StockPage = (props) => {
     const {symbol, companyName, open} = props.stock
@@ -15,6 +16,7 @@ const StockPage = (props) => {
             {/* <p>Stock Ticker: {symbol}</p>
             <p>Company: {companyName}</p>
             <p>Open: {open}</p> */}
+            <StockSelector />
           </Card.Text>
         </Card.Body>
 </Card>
