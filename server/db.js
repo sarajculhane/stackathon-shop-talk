@@ -19,10 +19,13 @@ const db= new Sequelize({
       validate: {
         len: [6, 100]
       }
+    },
+    stocksWatched : {
+      type: Sequelize.TEXT
     }
   });
 
-  User.sync()
+  User.sync({force: true})
   
 module.exports = User;
   

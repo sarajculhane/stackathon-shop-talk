@@ -24,28 +24,12 @@ const getMe = user => ({type: GET_ME, user})
 
 export const me = () => async dispatch => {
   try {
-    const res = await axios.get('http://localhost:8080/auth/me')
-    dispatch(getMe(res.data || defaultUser))
+    const {data} = await axios.get('http://localhost:8080/auth/me')
+    dispatch(getMe(data))
   } catch (err) {
     console.error(err, 'this is an error from me thunk')
   }
 }
-
-// export const auth = (email, password, method) => async dispatch => {
-//   let res
-//   try {
-//     res = await axios.post(`/auth/${method}`, {email, password})
-//   } catch (authError) {
-//     return dispatch(getUser({error: authError}))
-//   }
-
-//   try {
-//     dispatch(getUser(res.data))
-//     history.push('/home')
-//   } catch (dispatchOrHistoryErr) {
-//     console.error(dispatchOrHistoryErr)
-//   }
-// }
 
 export const auth = (
   username,
@@ -59,7 +43,7 @@ export const auth = (
         password
       })
       dispatch(getMe(data))
-      history.push('/home')
+      history.push(`/user/${data.id}`)
     } else if (method === 'signup') {
       const {data} = await axios.post(`http://localhost:8080/auth/${method}`, {username, password})
       dispatch(getMe(data))

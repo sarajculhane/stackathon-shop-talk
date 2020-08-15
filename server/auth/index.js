@@ -42,6 +42,7 @@ router.post('/logout', (req, res) => {
 router.get('/me', (req, res) => {
   try{
     res.json(req.user)
+    // console.log(req.session.passport.user, 'the session')
   } catch(err) {
     res.send(err)
   }

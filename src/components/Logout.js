@@ -16,7 +16,7 @@ const Logout = (props) => {
 
 const mapState = state => {
     return {
-      isLoggedIn: !!state.currentUser.id
+      isLoggedIn: !!state.currentUser
     }
   }
   

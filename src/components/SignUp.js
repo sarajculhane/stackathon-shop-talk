@@ -10,9 +10,6 @@ const SignUp = () => {
           <Card.Title>New User?</Card.Title>
           <Card.Text>
             Sign up now to start talking shop!
-            <p>
-              Membership is free but beware of the bulls
-            </p>
           </Card.Text>
           <Button variant="outline-primary">Sign Up</Button>
         </Card.Body>

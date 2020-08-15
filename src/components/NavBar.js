@@ -21,6 +21,7 @@ const NavBar = () => {
     <Nav className="mr-auto">
       <Nav.Link href="/">Home</Nav.Link>
       <Nav.Link href="/">Link</Nav.Link>
+      <Nav.Link href="/test">Rand</Nav.Link>
       </Nav>
   </Navbar.Collapse>
 </Navbar>

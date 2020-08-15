@@ -5,7 +5,7 @@ const cors = require('cors')
 const compression = require('compression')
 const session = require('express-session')
 const passport = require('passport')
-const db = require('./db')
+const User = require('./db')
 const app = express()
 app.use(cors())
 const PORT = process.env.PORT || 8080
@@ -19,7 +19,7 @@ passport.serializeUser((user, done) => done(null, user.id))
 
 passport.deserializeUser(async (id, done) => {
   try {
-    const user = await db.findByPk(id)
+    const user = await User.findByPk(id)
     done(null, user)
   } catch (err) {
     done(err)
@@ -84,6 +84,7 @@ const startListening = () => {
   // start listening (and create a 'server' object representing our server)
   const server = app.listen(PORT, () =>
     console.log(`Mixing it up on port ${PORT}`)
+    
   )
 
   // set up our socket control center
@@ -96,6 +97,7 @@ const startListening = () => {
 async function bootApp() {
 try{
   await createApp()
+  
   await startListening()
 } catch(err) {
     console.log(err)
