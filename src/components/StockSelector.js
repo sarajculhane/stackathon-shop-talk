@@ -15,30 +15,36 @@ const fakeStocks = [
 const StockSelector = () => {
 
     
-
-    const [selectedStocks, setStocks] = useState([])
+    const [selectedStocks, setStocks] = useState(JSON.parse(localStorage.getItem('stock')))
+    localStorage.setItem('stock', JSON.stringify(selectedStocks))
     const [submitted, setSubmitted] = useState(false)
 //    setStocks([...fakeStocks])
     const handleSubmit = (evt) => {
         evt.preventDefault()
         const stock = evt.target.stock.value
-        if(fakeStocks.filter((fake) => fake.symbol === stock))
         setStocks([...selectedStocks, stock])
         setSubmitted(true)
+        // updateUser()
         localStorage.setItem('stock', JSON.stringify(selectedStocks))
-        const localStock =JSON.parse(localStorage.getItem('user'))
-        console.log(stock, selectedStocks)
-        return <div>{localStock}</div>
     }
+
+    // const updateUser = () => {
+    //     let user = localStorage.getItem('user', JSON.parse('user'))
+    //     console.log(user, 'user')
+    //     user.stocksWatched = selectedStocks
+    //     localStorage.setItem('user', JSON.stringify(user))
+    //     console.log(user, 'userAfter')
+    // }
 
     const renderStockInfo = () => {
         const stockArr = []
         selectedStocks.forEach((stock, idx) => {
-            if(stock === fakeStocks[idx].symbol) stockArr.push(fakeStocks[idx])
+
+                if(fakeStocks[idx] && stock === fakeStocks[idx].symbol) stockArr.push(fakeStocks[idx])
         })
-        if(stockArr.length) {
+        if(selectedStocks.length || stockArr.length) {
             return (
-        stockArr.map((stock) => <div>{stock.symbol} {stock.company}</div>
+        stockArr.map((stock, idx) => <div key={idx}>{stock.symbol} {stock.company}</div>
             ))
         } else  {
             return <div>No Stocks</div>
@@ -49,6 +55,7 @@ const StockSelector = () => {
 
     return (
         <div>
+        
     <Form onSubmit={handleSubmit}>
 
         <Form.Group controlId="formBasicEmail">
@@ -60,7 +67,8 @@ const StockSelector = () => {
         Submit
         </Button>
     </Form>
-    {submitted && renderStockInfo()}
+    {/* {JSON.parse(localStorage.getItem('stock'))  && renderStockInfo()} */}
+    {renderStockInfo()}
         </div>
     )
 }

@@ -2,6 +2,7 @@ import React from 'react'
 import {Route,Switch ,withRouter} from 'react-router-dom'
 import Home from './components/Home'
 import StockTest from './components/StockTest'
+import StockPage from './components/StockPage'
 import UserHome from './components/UserHome'
 import Test from './components/Test'
 import {me} from './store/auth'
@@ -30,7 +31,7 @@ class Routes extends React.Component {
                 {isLoggedIn ? (
                     <div>
                 <Route exact path="/" component={() => <UserHome user={user}  />} />
-                <Route exact path='/stocks' component={StockTest} />
+                <Route exact path='/stocks' component={StockPage} />
                 <Route exact path='/test' component={Test} />
                 <Route exact path='/user/:id' component={() => <UserHome user={user}  />} />
                 </div>
