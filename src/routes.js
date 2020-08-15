@@ -10,8 +10,9 @@ import {connect} from 'react-redux'
 
 class Routes extends React.Component {
     async componentDidMount() {
+
         await this.props.loadInitialData()
-        const {isLoggedIn} = this.props
+        const isLoggedIn = JSON.parse(localStorage.getItem('user')) ? true :false
         if (isLoggedIn) {
           console.log('inside if')
         } else {
@@ -20,18 +21,29 @@ class Routes extends React.Component {
       }
     
     render() {
-        const {isLoggedIn} = this.props
-        console.log(this.props, isLoggedIn, 'the props')
+        const isLoggedIn = JSON.parse(localStorage.getItem('user')) ? true :false
+        const user = JSON.parse(localStorage.getItem('user')) 
+        console.log(user)
         return (
             
         <Switch>
-
-                <Route exact path="/" component={Home} />
-                {/* <Route path="/login" component={Login} />
-                <Route path="/signup" component={SignUp} /> */}
+                {isLoggedIn ? (
+                    <div>
+                <Route exact path="/" component={() => <UserHome user={user}  />} />
                 <Route exact path='/stocks' component={StockTest} />
                 <Route exact path='/test' component={Test} />
-                <Route exact path='/user/:id' component={() => <UserHome user={this.props.user}  />} />
+                <Route exact path='/user/:id' component={() => <UserHome user={user}  />} />
+                </div>
+                ) :
+            
+                (
+                <>
+                <Route exact path="/" component={Home} />
+                <Route exact path='/test' component={Test} />
+                <Route exact path='/user/:id' component={() => <UserHome user={this.props.user}  />
+            } />
+            </>)
+            }
            </Switch>
 
     )
@@ -41,7 +53,6 @@ class Routes extends React.Component {
 const mapState = state => {
     return {
 
-      isLoggedIn: !!state.currentUser.id,
       user: state.currentUser
     }
   }

@@ -11,7 +11,7 @@ const UserHome = (props) => {
         return(
             <div>
         <div>WELCOME TO BACK {username}</div>
-        {/* <StockTest /> */}
+        <StockTest />
         
         <Logout />
         </div>
