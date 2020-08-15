@@ -49,7 +49,7 @@ export const auth = (
       const {data} = await axios.post(`http://localhost:8080/auth/${method}`, {username, password})
       dispatch(getMe(data))
       localStorage.setItem('user', JSON.stringify(data))
-      history.push('/home')
+      history.push(`/user/${data.id}`)
     }
   } catch (err) {
       console.log(err, 'this is the thunk error')
