@@ -43,10 +43,12 @@ export const auth = (
         password
       })
       dispatch(getMe(data))
+      localStorage.setItem('user', JSON.stringify(data))
       history.push(`/user/${data.id}`)
     } else if (method === 'signup') {
       const {data} = await axios.post(`http://localhost:8080/auth/${method}`, {username, password})
       dispatch(getMe(data))
+      localStorage.setItem('user', JSON.stringify(data))
       history.push('/home')
     }
   } catch (err) {

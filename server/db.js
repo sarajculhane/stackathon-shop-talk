@@ -25,9 +25,11 @@ const db= new Sequelize({
     }
   });
 
-  User.sync({force: true})
+  User.sync()
   
-module.exports = User;
+module.exports = {
+  User, db
+};
   
   
 // const db =  async () => {

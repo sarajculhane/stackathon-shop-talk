@@ -16,22 +16,22 @@ export class LoginForm extends React.Component{
       return (
         <Form onSubmit={this.props.handleSubmit}>
 
-  <Form.Group controlId="formBasicEmail">
-    <Form.Label>Username</Form.Label>
-    <Form.Control type="text" name='username' placeholder="Enter username" />
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label>Username</Form.Label>
+            <Form.Control type="text" name='username' placeholder="Enter username" />
 
-  </Form.Group>
+          </Form.Group>
 
-  <Form.Group controlId="formBasicPassword">
-    <Form.Label>Password</Form.Label>
-    <Form.Control type="password" name='password' placeholder="Password" />
-  </Form.Group>
-  <Form.Group controlId="formBasicCheckbox">
-  </Form.Group>
-  <Button variant="outline-primary" type="submit">
-    Submit
-  </Button>
-</Form>
+          <Form.Group controlId="formBasicPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control type="password" name='password' placeholder="Password" />
+          </Form.Group>
+          <Form.Group controlId="formBasicCheckbox">
+          </Form.Group>
+          <Button variant="outline-primary" type="submit">
+            Submit
+          </Button>
+        </Form>
     )
 }
 

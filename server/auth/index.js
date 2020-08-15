@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const User = require('../db')
+const {User }= require('../db')
 module.exports = router
 
 router.post('/login', async (req, res, next) => {
@@ -12,7 +12,7 @@ router.post('/login', async (req, res, next) => {
       console.log('Incorrect password for user:', req.body.email)
       res.status(401).send('Wrong username and/or password')
     } else {
-        console.log('success')
+        console.log('success', req.session)
         req.login(user, err => (err ? next(err) : res.json(user)))
     }
   } catch (err) {
@@ -42,7 +42,7 @@ router.post('/logout', (req, res) => {
 router.get('/me', (req, res) => {
   try{
     res.json(req.user)
-    // console.log(req.session.passport.user, 'the session')
+    console.log(req.session.passport.user, 'the session')
   } catch(err) {
     res.send(err)
   }

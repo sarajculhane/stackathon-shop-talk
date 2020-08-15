@@ -5,7 +5,9 @@ const cors = require('cors')
 const compression = require('compression')
 const session = require('express-session')
 const passport = require('passport')
-const User = require('./db')
+const {User,db} = require('./db')
+const SequelizeStore = require('connect-session-sequelize')(session.Store)
+const sessionStore = new SequelizeStore({db})
 const app = express()
 app.use(cors())
 const PORT = process.env.PORT || 8080
@@ -38,14 +40,17 @@ const createApp = () => {
   app.use(compression())
 
   // session middleware with passport
-  app.use(session({
-    secret: 'a wildly insecure secret',
-    resave: false,
-    saveUninitialized: false
-  }));
-
-  app.use(passport.initialize());
-  app.use(passport.session());
+  app.use(
+    session({
+      secret: process.env.SESSION_SECRET || 'my best friend is Cody',
+      store: sessionStore,
+      resave: false,
+      saveUninitialized: false,
+      proxy: true
+    })
+  )
+  app.use(passport.initialize())
+  app.use(passport.session())
 
   // auth and api routes
   app.use('/auth', require('./auth'))
@@ -53,8 +58,6 @@ const createApp = () => {
 
   // static file-serving middleware
   app.use(express.static(path.join(__dirname, '..', 'public')))
-
-
 
   // any remaining requests with an extension (.js, .css, etc.) send 404
   app.use((req, res, next) => {
@@ -92,13 +95,15 @@ const startListening = () => {
 //   require('./socket')(io)
 }
 
-
+const syncDb = () => db.sync()
 
 async function bootApp() {
 try{
-  await createApp()
+    await sessionStore.sync()
+    await syncDb()
+    await createApp()
+    await startListening()
   
-  await startListening()
 } catch(err) {
     console.log(err)
 }

@@ -24,6 +24,7 @@ const mapState = state => {
     return {
       handleClick() {
         dispatch(logout())
+        localStorage.removeItem('user')
       }
     }
   }
