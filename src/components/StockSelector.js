@@ -15,30 +15,45 @@ const fakeStocks = [
 const StockSelector = () => {
 
     
-    const [selectedStocks, setStocks] = useState(JSON.parse(localStorage.getItem('stock')))
+    const [selectedStocks, setStocks] = useState(JSON.parse(localStorage.getItem('stock'))|| [])
     localStorage.setItem('stock', JSON.stringify(selectedStocks))
+
+
     const [submitted, setSubmitted] = useState(false)
 //    setStocks([...fakeStocks])
     const handleSubmit = (evt) => {
         evt.preventDefault()
         const stock = evt.target.stock.value
-        setStocks([...selectedStocks, stock])
-        setSubmitted(true)
-        // updateUser()
-        localStorage.setItem('stock', JSON.stringify(selectedStocks))
+        if(selectedStocks.includes(stock)) {
+            console.log('duplicate')
+            return <div>Already added</div>
+        }
+        else{
+            setStocks([...selectedStocks, stock])
+            setSubmitted(true)
+            localStorage.setItem('stock', JSON.stringify(selectedStocks))
+        }
+
+        
     }
 
-    // const updateUser = () => {
-    //     let user = localStorage.getItem('user', JSON.parse('user'))
-    //     console.log(user, 'user')
-    //     user.stocksWatched = selectedStocks
-    //     localStorage.setItem('user', JSON.stringify(user))
-    //     console.log(user, 'userAfter')
-    // }
+    const updateUser = () => {
+        if(JSON.parse(localStorage.getItem('user'))) {
+            let user = JSON.parse(localStorage.getItem('user'))
+
+            user.stocksWatched = selectedStocks
+            localStorage.setItem('user', JSON.stringify(user))
+            return user
+        }
+    }
 
     const renderStockInfo = () => {
+        if(updateUser()) {
+
+        
+        const userStocks = updateUser().stocksWatched
         const stockArr = []
-        selectedStocks.forEach((stock, idx) => {
+        userStocks.forEach((stock, idx) => {
 
                 if(fakeStocks[idx] && stock === fakeStocks[idx].symbol) stockArr.push(fakeStocks[idx])
         })
@@ -52,6 +67,7 @@ const StockSelector = () => {
 
 
     }
+}
 
     return (
         <div>
