@@ -2,7 +2,7 @@ import React from 'react';
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import Logout from './Logout'
-import StockTest from './StockTest'
+import StockPage from './StockPage'
 const UserHome = (props) => {
     if(props.user) {
         const {username} = props.user
@@ -11,7 +11,8 @@ const UserHome = (props) => {
         return(
             <div>
         <div>WELCOME TO BACK {username}</div>
-        <StockTest />
+        <StockPage />
+
         
         <Logout />
         </div>
@@ -25,7 +26,7 @@ const UserHome = (props) => {
        
         return(
             <div>Hi Guest
-                <StockTest />
+    
             </div>
 
             )

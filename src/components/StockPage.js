@@ -4,14 +4,14 @@ import Button from 'react-bootstrap/Button'
 import StockSelector from './StockSelector'
 
 const StockPage = (props) => {
-    const {symbol, companyName, open} = props.stock
+    // const {symbol, companyName, open} = props.stock
     return (
         <div>
         <Card bg='light'>
           <Card.Body>
           <Card.Title>Stock of the Day</Card.Title>
           <Card.Text>
-            {symbol}
+            {/* {symbol} */}
 
             {/* <p>Stock Ticker: {symbol}</p>
             <p>Company: {companyName}</p>

@@ -10,7 +10,7 @@ const Home = () => {
     <Container fluid>
     <Jumbo />
     <Row>
-    <Col><StockTest /></Col>
+
     </Row>
     <Row className="justify-content-md-center">
       <div id='sessions' >
