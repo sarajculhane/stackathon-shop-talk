@@ -1,6 +1,6 @@
 import React from 'react'
 import {Accordion ,Card, Button} from 'react-bootstrap'
-
+import Notes from './Notes'
 
 const StockAccordion = (props) => {
     const {stock} = props
@@ -20,9 +20,12 @@ const StockAccordion = (props) => {
           <h5>{stock.companyName}</h5>
           <h6>Day's Range - Last trade time: {date} </h6>
           <p>High: {stock.high} Low : {stock.low}</p>
+          <p> Change % {stock.changePercent}</p>
 
           <h6>52 Week </h6>
           <p>High: {stock.week52High} Low : {stock.week52Low}</p>
+
+          {/* <p><a href='/notes'><Notes stock={stock} /></a></p> */}
           
           </div></Card.Body>
     </Accordion.Collapse>

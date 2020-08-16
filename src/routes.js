@@ -3,7 +3,9 @@ import {Route,Switch ,withRouter} from 'react-router-dom'
 import Home from './components/Home'
 import StockPage from './components/StockPage'
 import UserHome from './components/UserHome'
+import Notes from './components/Notes'
 import Test from './components/Test'
+
 import {me} from './store/auth'
 import {connect} from 'react-redux'
 
@@ -33,6 +35,7 @@ class Routes extends React.Component {
                 <Route exact path='/stocks' component={StockPage} />
                 <Route exact path='/test' component={Test} />
                 <Route exact path='/user/:id' component={() => <UserHome user={user}  />} />
+                <Route exact path='/notes' component={() => <Notes user={user}  />} />
                 </div>
                 ) :
             
