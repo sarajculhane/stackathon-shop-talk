@@ -18,10 +18,11 @@ const StockSelector = () => {
     
     const [selectedStocks, setStocks] = useState(JSON.parse(localStorage.getItem('stock'))|| [])
     localStorage.setItem('stock', JSON.stringify(selectedStocks))
-    const[stock, setStock] = useState('')
+    const[stock, setStock] = useState({})
 
 
     const [submitted, setSubmitted] = useState(false)
+    const [count, setCount] = useState(0)
     const handleSubmit = (evt) => {
         evt.preventDefault()
         const stock = evt.target.stock.value
@@ -42,21 +43,23 @@ const StockSelector = () => {
     
 
     useEffect(() => {
-        if(submitted) {
-    //     const getQuote = async (ticker)  => {
-    //         try {
-    //             const {data} = await axios.get( `https://cloud.iexapis.com/stable/stock/${ticker}/quote?token=pk_da3237e3e732444cb0ddb0ff0ac806bf`, {
+        setCount(0)
+        if(submitted && count < 1) {
+        const getQuote = async (ticker)  => {
+            try {
+                const {data} = await axios.get( `https://cloud.iexapis.com/stable/stock/${ticker}/quote?token=pk_da3237e3e732444cb0ddb0ff0ac806bf`, {
 
-    //                 })
+                    })
 
-    //                 setStocks([...selectedStocks,data])
-    //                 console.log(data, 'the data')
+                    setStocks([...selectedStocks,data])
+                    console.log(data, 'the data')
                     
-    //         } catch(err) {
-    //             console.log(err, 'this is an axios error')
-    //         }
-    //     }
-    //   getQuote(stock)
+            } catch(err) {
+                console.log(err, 'this is an axios error')
+            }
+        }
+        setCount(1)
+      getQuote(stock)
 }
     }, [setStocks, selectedStocks, stock, submitted])
 
