@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
-import StockTest from './StockTest'
+import StockAccordion from './StockAccordion'
 import axios from 'axios'
 
 const fakeStocks = [
@@ -81,9 +81,9 @@ const StockSelector = () => {
         if(selectedStocks.length || stockArr.length) {
             return (
         stockArr.map((stock, idx) => 
-        <div key={idx}>
-        <p>{stock.symbol}</p>
-        <p>High: {stock.high} {stock.low}</p></div>
+        <div>
+        <StockAccordion key={idx} stock={stock} /></div>
+        
             ))
         } else  {
             return <div>No Stocks</div>

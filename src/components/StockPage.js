@@ -9,7 +9,7 @@ const StockPage = (props) => {
         <div>
         <Card bg='light'>
           <Card.Body>
-          <Card.Title>Stock of the Day</Card.Title>
+          <Card.Title>Your watched stocks</Card.Title>
           <Card.Text>
             {/* {symbol} */}
 
