@@ -19,6 +19,7 @@ const StockSelector = () => {
     const [selectedStocks, setStocks] = useState(JSON.parse(localStorage.getItem('stock'))|| [])
     localStorage.setItem('stock', JSON.stringify(selectedStocks))
     const[stock, setStock] = useState({})
+    const[didRun, setdidRun] = useState(false)
 
 
     const [submitted, setSubmitted] = useState(false)
@@ -31,10 +32,11 @@ const StockSelector = () => {
             return <div>Already added</div>
         }
         else{
-            setStocks([...selectedStocks, stock])
+            
             setSubmitted(true)
             localStorage.setItem('stock', JSON.stringify(selectedStocks))
             setStock(stock)
+            // setStocks([...selectedStocks, stock])
 
         }
 
@@ -50,16 +52,20 @@ const StockSelector = () => {
                 const {data} = await axios.get( `https://cloud.iexapis.com/stable/stock/${ticker}/quote?token=pk_da3237e3e732444cb0ddb0ff0ac806bf`, {
 
                     })
-
-                    setStocks([...selectedStocks,data])
-                    console.log(data, 'the data')
-                    
+                    if (data) {
+                        setStocks([...selectedStocks,data])
+                        console.log(data, 'the data')
+                    }
+                        
             } catch(err) {
                 console.log(err, 'this is an axios error')
             }
         }
         setCount(1)
+    if(stock) {
       getQuote(stock)
+      setdidRun(true)
+    }
 }
     }, [setStocks, selectedStocks, stock, submitted])
 
@@ -70,12 +76,14 @@ const StockSelector = () => {
         const userStocks = updateUser().stocksWatched
         const stockArr = []
         userStocks.forEach((stock, idx) => {
-
-                stockArr.push(stock)
+                if(stock) stockArr.push(stock)
         })
         if(selectedStocks.length || stockArr.length) {
             return (
-        stockArr.map((stock, idx) => <div key={idx}>{stock.symbol}</div>
+        stockArr.map((stock, idx) => 
+        <div key={idx}>
+        <p>{stock.symbol}</p>
+        <p>High: {stock.high} {stock.low}</p></div>
             ))
         } else  {
             return <div>No Stocks</div>
