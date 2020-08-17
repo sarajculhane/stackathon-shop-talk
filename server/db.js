@@ -21,7 +21,12 @@ const db= new Sequelize({
       }
     },
     stocksWatched : {
-      type: Sequelize.TEXT
+      type: Sequelize.TEXT,
+      defaultValue: null
+    },
+    notes: {
+      type: Sequelize.TEXT,
+      defaultValue: null
     }
   });
 

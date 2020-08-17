@@ -1,18 +1,23 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {Accordion ,Card, Button} from 'react-bootstrap'
 import Notes from './Notes'
 
 const StockAccordion = (props) => {
-    const {stock} = props
+    const {stock, handleDelete} = props
     let date = new Date(stock.lastTradeTime)
     date = date.toLocaleString()
     console.log(date.toLocaleString(), 'this is the date')
+
+
+
+
     return (
    <Accordion>
   <Card>
     <Card.Header>
       <Accordion.Toggle as={Button} variant="link" eventKey="0">
         {stock.symbol} - {stock.companyName}
+        {/* <Button onClick={() => handleDelete(stock)}>Remove</Button> */}
       </Accordion.Toggle>
     </Card.Header>
     <Accordion.Collapse eventKey="0">
@@ -24,8 +29,6 @@ const StockAccordion = (props) => {
 
           <h6>52 Week </h6>
           <p>High: {stock.week52High} Low : {stock.week52Low}</p>
-
-          {/* <p><a href='/notes'><Notes stock={stock} /></a></p> */}
           
           </div></Card.Body>
     </Accordion.Collapse>

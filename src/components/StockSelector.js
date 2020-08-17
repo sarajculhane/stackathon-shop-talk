@@ -5,15 +5,8 @@ import Form from 'react-bootstrap/Form'
 import StockAccordion from './StockAccordion'
 import axios from 'axios'
 
-const fakeStocks = [
-    {
-    symbol: 'ZM', company: 'ZOOM'
 
-},
-{symbol : 'APPL', company: 'Apple'},
-{symbol : 'FB', company : 'facebook'}]
-
-const StockSelector = () => {
+const StockSelector = (props) => {
 
     
     const [selectedStocks, setStocks] = useState(JSON.parse(localStorage.getItem('stock'))|| [])
@@ -82,7 +75,7 @@ const StockSelector = () => {
             return (
         stockArr.map((stock, idx) => 
         <div>
-        <StockAccordion key={idx} stock={stock} /></div>
+        <StockAccordion handleDelete={handleDelete} key={idx} stock={stock} /></div>
         
             ))
         } else  {
@@ -101,6 +94,14 @@ const StockSelector = () => {
             localStorage.setItem('user', JSON.stringify(user))
             return user
         }
+    }
+
+    const handleDelete = (stock) => {
+        let stockList = JSON.parse(localStorage.getItem('stock'))
+        stockList = stockList.filter((val) => val.symbol !== stock.symbol)
+        localStorage.setItem('stock', JSON.stringify(stockList))
+        console.log('clicked')
+        setStocks(stockList)
     }
 
 
