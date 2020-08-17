@@ -8,6 +8,8 @@ const StockAccordion = (props) => {
     date = date.toLocaleString()
     console.log(date.toLocaleString(), 'this is the date')
 
+    
+
 
 
 
@@ -17,8 +19,9 @@ const StockAccordion = (props) => {
     <Card.Header>
       <Accordion.Toggle as={Button} variant="link" eventKey="0">
         {stock.symbol} - {stock.companyName}
-        {/* <Button onClick={() => handleDelete(stock)}>Remove</Button> */}
+        
       </Accordion.Toggle>
+      <Button onClick={handleDelete}>Remove</Button>
     </Card.Header>
     <Accordion.Collapse eventKey="0">
       <Card.Body><div>

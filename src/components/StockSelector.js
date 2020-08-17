@@ -6,7 +6,7 @@ import StockAccordion from './StockAccordion'
 import axios from 'axios'
 
 
-const StockSelector = (props) => {
+const StockSelector = () => {
 
     
     const [selectedStocks, setStocks] = useState(JSON.parse(localStorage.getItem('stock'))|| [])
@@ -66,16 +66,16 @@ const StockSelector = (props) => {
         if(updateUser()) {
 
         
-        const userStocks = updateUser().stocksWatched
-        const stockArr = []
-        userStocks.forEach((stock, idx) => {
-                if(stock) stockArr.push(stock)
-        })
-        if(selectedStocks.length || stockArr.length) {
+        // const userStocks = updateUser().stocksWatched
+        // const stockArr = []
+        // userStocks.forEach((stock, idx) => {
+        //         if(stock) stockArr.push(stock)
+        // })
+        if(selectedStocks.length) {
             return (
-        stockArr.map((stock, idx) => 
+        selectedStocks.map((stock, idx) => 
         <div>
-        <StockAccordion handleDelete={handleDelete} key={idx} stock={stock} /></div>
+        <StockAccordion handleDelete={() => handleDelete(stock)} key={idx} stock={stock} /></div>
         
             ))
         } else  {
@@ -100,8 +100,11 @@ const StockSelector = (props) => {
         let stockList = JSON.parse(localStorage.getItem('stock'))
         stockList = stockList.filter((val) => val.symbol !== stock.symbol)
         localStorage.setItem('stock', JSON.stringify(stockList))
-        console.log('clicked')
+   
         setStocks(stockList)
+        
+        // console.log('clicked')
+        
     }
 
 
