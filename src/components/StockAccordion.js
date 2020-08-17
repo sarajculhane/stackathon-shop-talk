@@ -14,7 +14,7 @@ const StockAccordion = (props) => {
 
 
     return (
-   <Accordion>
+   <Accordion variant='secondary'>
   <Card>
     <Card.Header>
       <Accordion.Toggle as={Button} variant="link" eventKey="0">
@@ -32,6 +32,8 @@ const StockAccordion = (props) => {
 
           <h6>52 Week </h6>
           <p>High: {stock.week52High} Low : {stock.week52Low}</p>
+
+          <a href='/notes' > Notes </a>
           
           </div></Card.Body>
     </Accordion.Collapse>

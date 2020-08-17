@@ -8,8 +8,11 @@ const StockPage = (props) => {
 
     return (
         <div>
-        <Card bg='light'>
+        <Card bg='primary'>
           <Card.Body>
+          <i class="fa-money fa"></i>
+
+
           <Card.Title>Your watched stocks</Card.Title>
           <Card.Text>
             <StockSelector />

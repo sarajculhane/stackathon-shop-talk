@@ -21,7 +21,6 @@ const NavBar = () => {
     <Nav className="mr-auto">
       <Nav.Link href="/">Home</Nav.Link>
       <Nav.Link href="/notes">Notes</Nav.Link>
-      <Nav.Link href="/test">Rand</Nav.Link>
       </Nav>
   </Navbar.Collapse>
 </Navbar>
@@ -31,7 +30,7 @@ const NavBar = () => {
 export const Jumbo = () => {
     return (
 <div>
-<Jumbotron fluid style={{ height: 350}} fluid>
+<Jumbotron style={{ height: 350}} fluid>
   <h1>Welcome to Shop Talk</h1>
   <Image src="/bullsandbears.png" alt='bull' fluid style={{width: 200, height: 'auto'}}/>
   <p>

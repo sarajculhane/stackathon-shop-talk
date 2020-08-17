@@ -118,10 +118,11 @@ const StockSelector = () => {
         <Form.Control type="text" name='stock' placeholder="Search for a stock" />
 
         </Form.Group>
-        <Button variant="outline-primary" type="submit">
+        <Button variant="light" type="submit">
         Submit
         </Button>
     </Form>
+    <br />
         {renderStockInfo()}
         </div>
     )
