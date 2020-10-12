@@ -2,6 +2,8 @@
 
 Shoptalk is an Electron App allows users to track their selected stocks with data coming from the IEX Cloud API. This application was build as part of FullStack Academy Coding Bootcamp over the course of 4 days.
 
+![image](shoptalk)
+
 ### Core technologies:
 
 - Electron
