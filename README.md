@@ -7,7 +7,8 @@ Shoptalk is an Electron App allows users to track their selected stocks with dat
 ### Core technologies:
 
 - Electron
-- React (Leveraging CRA)
+- React (Leveraging Create React App)
+- React Bootstrap
 - Redux
 - Express
 - Node.js/JS
